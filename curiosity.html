@@ -1,0 +1,36 @@
+<h1>Exploration par curiosité</h1>
+<p>Pour faire face aux deux principales limites de l&#39;apprentissage par renforcement : le manque de récompenses et les récompenses extrinsèques, on peut définir un autre modèle de récompense : la <strong>curiosité</strong>. Il s&#39;agit d&#39;un modèle
+  basé sur l&#39;exemple de la personne flâneuse, c&#39;est-à-dire de la personne qui reçoit peu de récompenses au quotidien si ce n&#39;est des récompenses intrinsèques.</p>
+<p>On définit alors la récompense comme l&#39;erreur de prédiction de l&#39;état suivant. L&#39;agent cherche en effet à prédire l&#39;état suivant de l&#39;environnement en connaissant l&#39;état actuel et les actions menées. Plus il se trompe, c&#39;est-à-dire
+  plus il est surpris par ce qu&#39;il découvre, plus il sera récompensé !</p>
+<p>Reprenons l&#39;exemple de Mario Bros, l&#39;agent perçoit l&#39;état décrit dans l&#39;image suivante et prend une décision en fonction de celui-ci. Suite à cette décision, il lui est demandé de prédire quel sera l&#39;état suivant.</p>
+<p><img src='img/mariobros_1.png' alt='Mario Bros à l&#39;état 1' referrerPolicy='no-referrer' /></p>
+<p>L&#39;agent émet donc une prédiction et si celle-ci s&#39;avère être erronée, il est récompensé. Ainsi dans le cas présent, l&#39;agent n&#39;a pas pu (et ne pouvait pas) prévoir qu&#39;en avançant il apparaitrait un tuyau, il est donc récompensé.</p>
+<figure>
+  <table>
+    <thead>
+      <tr>
+        <th>Prédiction</th>
+        <th>Réalité</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><img src='img/mariobros_15.png' alt='Image prédite' referrerPolicy='no-referrer' /></td>
+        <td><img src='img/mariobros_2.png' alt='Image réelle' referrerPolicy='no-referrer' /></td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>On aurait donc le schéma suivant :</p>
+<p><img class='wide' src='img/mariobros_diagram.png' alt='Schéma exploration MarioBros par curiosité' referrerPolicy='no-referrer' /></p>
+<p>On a donc quasiment le même schéma que précédemment mais cette fois-ci avec une politique de récompense bien mieux défini.</p>
+<p>Voici une démonstration sur les jeux MarioBros et VizDoom.</p>
+<iframe src="https://www.youtube.com/embed/J3FHOyhUn3A" height="315" width="560" guest-id="5" allow-top-navigation="false" allow-forms="false" allowfullscreen="true" allow-popups="false" onerror="this.style.display = 'none';"></iframe>
+<p>&nbsp;</p>
+<h2>Paresse</h2>
+<p>Une étude plus approfondi de cet algorithme a conduit au résultat suivant :</p>
+<iframe src="https://www.youtube.com/embed/C3yKgCzvE_E" height="315" width="560" guest-id="6" allow-top-navigation="false" allow-forms="false" allowfullscreen="true" allow-popups="false" onerror="this.style.display = 'none';"></iframe>
+<p>Tout se passe très bien, l&#39;agent joue à de très nombreux jeux variés et s&#39;en sors très bien. Cependant, lorsque l&#39;on place l&#39;agent face à une <em>télévision</em> il reste bloqué. La curiosité a ici entrainé la paresse. En effet, l&#39;agent
+  a ici la possibilité de changer de chaine devant cette télévision, ce qui conduit à chaque fois à une grande récompense car le résultat n&#39;est que très peu prédictible.</p>
+<p><img src='img/paresse.gif' alt='Gif paresse' referrerPolicy='no-referrer' /></p>

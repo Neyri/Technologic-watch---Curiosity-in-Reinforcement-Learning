@@ -1,0 +1,44 @@
+<h1>Apprentissage par renforcement</h1>
+
+<p>Un algorithme d&#39;apprentissage par renforcement peut se décomposer comme indiqué sur l&#39;image suivante.</p>
+<p><img src='img/reinforcement_learning.png' alt='Une souris en apprentissage par renforcement' referrerPolicy='no-referrer' /></p>
+<p>Analysons ce schéma pour comprendre le fonctionnement d&#39;un algorithme d&#39;apprentissage artificiel. Nous avons un agent (la souris) placé dans un environnement (le labyrinthe) et cherchant à obtenir une récompense (un fromage). Les observations
+  de l&#39;agent vont induire un changement d&#39;état interne qui entraine une action éventuellement récompensée par un fromage.</p>
+<p>Un des exemples célèbre de l&#39;apprentissage par renforcement est Google Deep Mind jouant au jeu casse brique.</p>
+<iframe src="https://www.youtube.com/embed/V1eYniJ0Rnk" height="315" width="560" guest-id="9" allow-top-navigation="false" allow-forms="false" allowfullscreen="true" allow-popups="false" onerror="this.style.display = 'none';"></iframe>
+<p>Comme on le constate sur cette vidéo, au début l&#39;algorithme n&#39;est pas très performant et perd toutes les parties. Par contre, au bout de quelques entrainement, il devient excellent et découvre même des techniques pour gagner encore plus vite.</p>
+<p>Reprenons le schéma vu précédemment pour l&#39;analyser dans le cadre de l&#39;exemple de cet algorithme.</p>
+<p><img class="wide" src='img/atari_diagram.png' alt='Schéma apprentissage par renforcement casse brique' referrerPolicy='no-referrer' /></p>
+<p>L&#39;agent ne perçoit que les pixels et le score et il ne peut agir que sur la barre. Il s'agit ici d'un réseau de neurone dont les observations sont les pixels du jeu. A chaque image, le réseau analyse les informations et en déduit une action à mener
+  parmi bouger la barre à droite, à gauche ou pas du tout. Cette action est ensuite récompensée par une augmentation du score.</p>
+
+<h2>Limites</h2>
+<p>Comme l&#39;a montré la vidéo, cette approche fonctionne très bien sur le jeu de casse brique et même sur beaucoup d&#39;autres jeux Atari. Cependant ce modèle présente 2 défauts principaux : le manque de récompenses et la motivation par une récompense
+  extrinsèque.
+</p>
+
+<h3>Manque de récompense</h3>
+<p>Pour un jeu Atari, il est facile et rapide de pouvoir déterminer si l&#39;action menée à permis d&#39;augmenter le score. En effet, il ne se passe que quelques images (le temps pour la balle d&#39;atteindre une brique) avant d&#39;obtenir cette récompense.
+  Par contre dès que le jeu se complexifie, par exemple dans le cas du jeu VizDoom<sup class='md-footnote'><a href='#dfref-footnote-1' name='ref-footnote-1'>1</a></sup>, il devient beaucoup plus difficile pour l&#39;agent de déterminer quelle action à
+  conduit à la récompense. </p>
+<p>En effet dans ce jeu le but est d&#39;explorer un niveau tout en évitant de se faire tuer par des ennemis. Il est possible de les éviter ou de les tuer à notre tour. Les niveaux sont complexes et une action (par exemple la l&#39;élimination ou non d&#39;un
+  ennemi) peut avoir des conséquences lointaines sur le jeu sans que l&#39;agent ne s&#39;en rende compte.</p>
+<p><img src='img/vizdoom.png' alt='Image du jeu VizDoom' referrerPolicy='no-referrer' /> </p>
+
+<h3>Motivation extrinsèque</h3>
+<p>Avant de traiter du problème de la motivation extrinsèque, il est important de bien comprendre ce qu&#39;est la motivation extrinsèque.</p>
+<p>En psychologie, on définit la motivation extrinsèque comme la motivation pour avoir une récompense ou éviter une punition. Elle se définit par opposition à la motivation intrinsèque qui est la motivation par le plaisir personnel.</p>
+<p>Un algorithme d&#39;apprentissage par renforcement <strong>nécessite</strong> la création d&#39;une récompense extrinsèque pour pouvoir être entrainé correctement. Cependant cette récompense est loin d&#39;être toujours évidente. Prenons l&#39;exemple
+  du célèbre jeu Mario Bros, le personnage Mario parcourt des niveaux d&#39;un point A à un point B, il peut interagir avec son environnement en cassant des blocs qui peuvent lui rapporter des pièces ou des bonus. Il doit également éviter des ennemis
+  qu&#39;il peut éliminer en leur sautant dessus. A chaque interaction (pièce récupérée, ennemi éliminé), le joueur obtient des points.</p>
+<p><img src='img/mariobros.png' alt='Image du jeu Mario Bros' referrerPolicy='no-referrer' /></p>
+<p>Si l&#39;on souhaitait entrainé un algorithme d&#39;apprentissage par renforcement, il semble difficile de choisir une bonne récompense extrinsèque à notre agent :</p>
+<ul>
+  <li>Une récompense uniquement en cas de victoire revient à implémenter le problème soulevé juste précédemment</li>
+  <li>Une récompense sur le nombre de point amènerait Mario à ne tuer que des ennemis et pas forcément à finir le niveau.</li>
+</ul>
+<p>Finalement, aucune de ses solutions ne semble optimale et ce procédé consiste tout de même à définir à la main la récompense souhaitée, ce qui est loin d'être très évolutif.</p>
+
+<div class='footnote'>
+  <div class='footnote-line'><span class='md-fn-count'>1</span> VizDoom est une adaptation du jeu Doom pour la recherche en Intelligence Artificielle. <a name='dfref-footnote-1' href='#ref-footnote-1' title='retour au document' class='reversefootnote'>↩</a></div>
+</div>

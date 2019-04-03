@@ -1,0 +1,32 @@
+<p>Pour contrer la paresse induite par la curiosité essayant de prédire l&#39;état suivant, il a été introduit la récompense par curiosité épisodique. Cette approche a été présentée dans l&#39;article <a href='https://ai.googleblog.com/2018/10/curiosity-and-procrastination-in.html'>Curiosity and Procrastination in Reinforcement Learning</a>  (dont sont issues les visualisations présentées).</p>
+<h1 data-breakpage>Exploration par curiosité épisodique</h1>
+
+<p>Cette nouvelle définition de la curiosité ne s&#39;appuie pas sur l&#39;incapacité de l&#39;agent à prédire l&#39;état suivant mais plus simplement sur sa mémoire. Ainsi, chaque état est stocké et l&#39;état courant est comparé aux états déjà observés
+  pour déterminer leur proximité. Cela permet en effet de ne plus rester bloquer devant la télé car au bout d&#39;un certain temps, l&#39;agent va reconnaitre des scènes qu&#39;il aura déjà vu et passera alors à autre chose.</p>
+<p>La principale problématique est alors la définition de la ressemblance entre 2 états. En effet vérifier l&#39;exact similarité est vain car en réalité un agent ne verra jamais 2 états exactement de la même manière. Il peut par exemple retourner dans une
+  pièce déjà vue et l&#39;observer sous un angle différent, cet état doit alors être reconnu comme déjà observé. Pour cela, on utilise un réseau de neurones chargé de prédire le nombre d&#39;étapes pour atteindre l&#39;état courant à partir des anciens
+  états.
+</p>
+<p><img alt="Recherche de la proximité d' un état" src='img/reachable_state.png ' title='Image from Curiosity and Procrastination in Reinforcement Learning ' referrerPolicy='no-referrer '></img>
+</p>
+<p>&nbsp;</p>
+<p>Cette approche et la précédente ont été comparé sur le jeu DMLab<sup class='md-footnote '><a href='#dfref-footnote-2' name='ref-footnote-2'>1</a></sup>. Dans ce jeu l&#39;agent possède un pistolet laser et doit explorer des niveaux 3D. Comme montré ci-dessous,
+  l&#39;agent utilisant une exploration par curiosité pure est captivé par le pistolet Laser, il n&#39;arrive en effet pas à prédire comment son tir sera représenté et reste donc bloqué à tirer contre un mur.</p>
+
+<p><img alt='Agent passionné par le pistolet Laser ' src='img/icm_dmlab.gif ' title='Image from Curiosity and Procrastination in Reinforcement Learning ' referrerPolicy='no-referrer '></img>
+</p>
+<p>Alors que l&#39;agent mémorisant les états précédents ne reste pas fasciné par son un tir puisqu&#39;il a déjà rencontré un tir comme celui-ci précédemment. Il va alors plutôt chercher à rencontrer des scènes éloignées de celles qu&#39;il a déjà vu.</p>
+
+<p><img alt='Agent curieux épisodiquement parcourant le jeu ' src='img/memory_dmlab.gif ' title='Image from Curiosity and Procrastination in Reinforcement Learning
+    ' referrerPolicy='no-referrer '></img>
+</p>
+<p>Globalement l&#39;agent se comporte très bien. Ci-dessous on peut observer son avancée. L&#39;image de gauche correspond aux récompenses (en vert) et punitions (en rouge) reçues, l&#39;image du milieu montre les positions stockées en mémoire, et l&#39;image
+  de droite affiche la vue en première personne qu&#39;utilise l&#39;agent</p>
+
+<p>
+  <img alt="Exploration d'un niveau de DMLab " src='img/explore_dmlab.gif ' title='Image from Curiosity and Procrastination in Reinforcement Learning ' referrerPolicy='no-referrer '></img>
+</p>
+
+<div class='footnote '>
+  <div class='footnote-line '><span class='md-fn-count '>1</span> MLab (Deep Mind Lab) est un jeu 3D développé pour l&#39;apprentissage par renforcement <a name="dfref-footnote-2" href="#ref-footnote-2" title='retour au document ' class='reversefootnote '>↩</a></div>
+</div>
