@@ -5,6 +5,7 @@ body{
   background-color: #333;
   color: #eee;
   font-family: arial;
+	font-size:14px;
 }
 
 #title{
@@ -29,7 +30,7 @@ body{
 	list-style: none;
 	padding: 5px 5px 7px;
   text-align: center;
-  width:22%;
+  width:21%;
   margin-right: 1%;
   background-color: #444;
   border-radius: 5px 5px 0px 0px ;
@@ -54,7 +55,7 @@ body{
 	top: -2px;
 	border-radius: 15px;
 	height: 75vh;
-	font-size: 16px;
+	font-size: 14px;
   background-color: #555;
   border: 1px solid black;
 	line-height: 1.5em;
